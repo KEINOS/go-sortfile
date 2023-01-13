@@ -1,3 +1,12 @@
+/*
+Package sortfile provides functions to sort a file. Both in-memory and external merge sort.
+
+## Usage
+
+```go
+import "github.com/KEINOS/go-sortfile/sortfile"
+```
+*/
 package sortfile
 
 const (
