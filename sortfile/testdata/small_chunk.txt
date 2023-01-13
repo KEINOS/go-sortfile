@@ -1,0 +1,3 @@
+foo line
+bar line
+baz line
