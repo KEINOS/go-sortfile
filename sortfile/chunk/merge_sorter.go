@@ -4,6 +4,7 @@ import (
 	"io"
 	"strings"
 
+	"github.com/KEINOS/go-donegroup/donegroup"
 	"github.com/pkg/errors"
 )
 
@@ -15,9 +16,12 @@ import (
 //
 // Note that each chunk file must be sorted.
 type MergeSorter struct {
-	lenK    int
 	outFile *FileWriter
-	chunks  []*FileReader
+	// IsLess is the function to compare two strings during merge-sorting. This
+	// function must be the same as the one used to sort the chunk files.
+	IsLess func(a, b string) bool
+	chunks []*FileReader
+	lenK   int
 }
 
 // ----------------------------------------------------------------------------
@@ -31,6 +35,7 @@ func NewMergeSorter(inFiles []*FileReader, outFile *FileWriter) *MergeSorter {
 		lenK:    len(inFiles),
 		outFile: outFile,
 		chunks:  inFiles,
+		IsLess:  IsLess,
 	}
 }
 
@@ -42,22 +47,28 @@ func NewMergeSorter(inFiles []*FileReader, outFile *FileWriter) *MergeSorter {
 func (ms *MergeSorter) Sort() error {
 	// Initialize the first line of each chunk
 	for indexK := 0; indexK < ms.lenK; indexK++ {
-		ms.chunks[indexK].NextLine()
+		if err := ms.chunks[indexK].NextLine(); err != nil {
+			return errors.Wrap(err, "failed to read the first line during initialization")
+		}
+	}
+
+	doneList, err := donegroup.New(ms.lenK)
+	if err != nil {
+		return errors.Wrap(err, "failed to create a new DoneGroup")
 	}
 
 	leastLine := ms.chunks[0].CurrentLine() // use the 1st line as the least line
 	lastUsedIndex := 0
-	done := 0
 
 	for {
-		if done == ms.lenK {
+		if doneList.IsDoneAll() {
 			break
 		}
 
 		// Find the least line in K.
 		for indexK := 0; indexK < ms.lenK; indexK++ {
 			if ms.chunks[indexK].IsEOF() {
-				done++
+				doneList.Done(indexK + 1)
 
 				continue
 			}
@@ -70,7 +81,7 @@ func (ms *MergeSorter) Sort() error {
 			}
 
 			// Is current line less than the least line?
-			if ms.chunks[indexK].CurrentLine() < leastLine {
+			if ms.IsLess(ms.chunks[indexK].CurrentLine(), leastLine) {
 				// Update
 				leastLine = ms.chunks[indexK].CurrentLine()
 

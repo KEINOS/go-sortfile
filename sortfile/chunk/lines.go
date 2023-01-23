@@ -19,6 +19,9 @@ import (
 // merge sort process.
 // To simply write huge number of lines to a file, use FileWriter object instead.
 type Lines struct {
+	// IsLess is the function to compare two strings during chunk file creation.
+	// This function must be the same as the one to be used for merge-sorting.
+	IsLess   func(a, b string) bool
 	lines    []string
 	sizeCurr uint64
 }
@@ -28,12 +31,19 @@ type Lines struct {
 // ----------------------------------------------------------------------------
 
 // NewLines returns a new object of Lines.
+//
+// By default it uses slice.Sort to sort the lines. Set IsLess to use a custom
+// function to compare two strings while sorting.
 func NewLines() Lines {
 	return Lines{
+		IsLess:   nil,
 		lines:    []string{},
 		sizeCurr: 0,
 	}
 }
+
+// osCreateTemp is a copy of os.CreateTemp to ease testing.
+var osCreateTemp = os.CreateTemp
 
 // ----------------------------------------------------------------------------
 //  Methods
@@ -50,7 +60,7 @@ func (l *Lines) AppendLine(line string) {
 // Dump sorts and writes the lines in the chunk to a temporary file and returns
 // the path to the file.
 func (l *Lines) Dump() (string, error) {
-	file, err := os.CreateTemp(os.TempDir(), "sortfile-*")
+	file, err := osCreateTemp(os.TempDir(), "sortfile-*")
 	if err != nil {
 		return "", errors.Wrap(err, "failed to create a temporary file")
 	}
@@ -106,7 +116,11 @@ func (l *Lines) WillOverSize(line string, sizeMax int) bool {
 
 // WriteSortedLines writes the sorted lines in the chunk to the given output.
 func (l *Lines) WriteSortedLines(output io.Writer) error {
-	inmemory.SortSlice(l.lines)
+	if l.IsLess != nil {
+		inmemory.SortSliceFunc(l.lines, l.IsLess)
+	} else {
+		inmemory.SortSlice(l.lines)
+	}
 
 	result := strings.Join(l.lines, "")
 

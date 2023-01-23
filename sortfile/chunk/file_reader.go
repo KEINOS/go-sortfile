@@ -43,17 +43,24 @@ func NewFileReader(path string) (*FileReader, error) {
 		return nil, errors.Wrap(err, "failed to open the file")
 	}
 
-	reader := FileReader{
+	reader := NewIOReader(file)
+
+	return reader, nil
+}
+
+// NewIOReader retruns a new FileReader object.
+//
+// It is similar to NewFileReader() but it takes io.Reader instead of file path.
+func NewIOReader(reader io.Reader) *FileReader {
+	return &FileReader{
 		line:    "",
-		file:    file,
-		scanner: bufio.NewScanner(file),
+		file:    reader,
+		scanner: bufio.NewScanner(reader),
 		closer: func() error {
-			return file.Close()
+			return nil
 		},
 		isEOF: false,
 	}
-
-	return &reader, nil
 }
 
 // ----------------------------------------------------------------------------

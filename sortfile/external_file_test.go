@@ -31,7 +31,7 @@ func TestExternalFile_fail_create_new_chunk_file_reader(t *testing.T) {
 		ptrFileOut := os.Stdout
 
 		// External merge sort with sizeMemoryFree as the chunk size
-		err = ExternalFile(datasize.MiB, datasize.KiB, ptrFileIn, ptrFileOut)
+		err = ExternalFile(datasize.MiB, datasize.KiB, ptrFileIn, ptrFileOut, nil)
 
 		require.Error(t, err, "ExternalFile failed during test")
 		assert.Contains(t, err.Error(), "failed to create reader for the chunk file",
@@ -47,7 +47,7 @@ func TestExternalFile_input_file_pointer_is_nil(t *testing.T) {
 	ptrFileIn, err := os.Open(pathDirTmp)
 	require.NoError(t, err, "failed to open the input file during test")
 
-	err = ExternalFile(datasize.MiB, datasize.KiB, nil, ptrFileIn)
+	err = ExternalFile(datasize.MiB, datasize.KiB, nil, ptrFileIn, nil)
 
 	require.Error(t, err, "input file is a directory should return error")
 	require.Contains(t, err.Error(), "failed to split the file into chunks",
@@ -76,7 +76,7 @@ func TestExternalFile_input_is_smaller_than_chunk_size(t *testing.T) {
 		fileOut := os.Stdout
 
 		// External merge sort with sizeMemoryFree as the chunk size
-		err = ExternalFile(sizeFileIn, sizeMemoryFree, fileIn, fileOut)
+		err = ExternalFile(sizeFileIn, sizeMemoryFree, fileIn, fileOut, nil)
 		require.NoError(t, err, "ExternalFile failed during test")
 	})
 

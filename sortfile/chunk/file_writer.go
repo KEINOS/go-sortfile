@@ -35,8 +35,8 @@ type FileWriter struct {
 //
 // The maxSizeBuf is the max size of the buffer before it flushes the buffer to
 // the file.
-// It is similar to NewFileWriterPtr but it takes a path instead of a file pointer.
-func NewFileWriterPath(pathFileOut string, maxSizeBuf datasize.InBytes) (*FileWriter, error) {
+// It is similar to NewIOWriter but it takes a path instead of a file pointer.
+func NewFileWriter(pathFileOut string, maxSizeBuf datasize.InBytes) (*FileWriter, error) {
 	file, err := os.Create(pathFileOut)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to open the file")
@@ -53,12 +53,12 @@ func NewFileWriterPath(pathFileOut string, maxSizeBuf datasize.InBytes) (*FileWr
 	}, nil
 }
 
-// NewFileWriterPtr returns a new FileWriter object.
+// NewIOWriter returns a new FileWriter object.
 //
 // The maxSizeBuf is the max size of the buffer before it flushes the buffer to
 // the file.
 // It is similar to NewFileWriterPath but it takes a file pointer instead of a path.
-func NewFileWriterPtr(ptrFileOut io.Writer, maxSizeBuf datasize.InBytes) *FileWriter {
+func NewIOWriter(ptrFileOut io.Writer, maxSizeBuf datasize.InBytes) *FileWriter {
 	return &FileWriter{
 		file:       ptrFileOut,
 		buf:        make([]byte, 0, int(maxSizeBuf)),

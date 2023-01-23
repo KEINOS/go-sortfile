@@ -11,16 +11,25 @@ import (
 
 // ExternalFile sorts the file using external merge sort (K-way merge sort).
 //
+// The isLess agument is a function to compare two lines. If isLess is nil, the
+// default is used.
+//
+//	  // Default isLess function
+//	  func isLess(a, b string) bool {
+//		     return a < b // to reverse the sort, use a > b
+//	  }
+//
 // If the sizeFileIn is smaller than the sizeChunk, we recommend to use InMemory
 // sort instead.
-func ExternalFile(sizeFileIn, sizeChunk datasize.InBytes, ptrFileIn io.Reader, ptrFileOut io.Writer) error {
+func ExternalFile(sizeFileIn, sizeChunk datasize.InBytes, ptrFileIn io.Reader, ptrFileOut io.Writer, isLess func(string, string) bool) error {
 	// Avoid index out of range with length 0
 	if sizeFileIn.IsSmallerThan(sizeChunk) {
 		sizeChunk = sizeFileIn
 	}
 
-	// Split the file into sorted chunk files
-	listChunkFiles, err := chunk.Chunker(ptrFileIn, sizeFileIn, sizeChunk)
+	// Split the file into sorted chunk files. The chunk files are sorted by
+	// lines using the default isLess function (nil).
+	listChunkFiles, err := chunk.Chunker(ptrFileIn, sizeFileIn, sizeChunk, isLess)
 	if err != nil {
 		return errors.Wrap(err, "failed to split the file into chunks")
 	}
@@ -46,7 +55,7 @@ func ExternalFile(sizeFileIn, sizeChunk datasize.InBytes, ptrFileIn io.Reader, p
 		chunks[index] = reader
 	}
 
-	chunkWriter := chunk.NewFileWriterPtr(ptrFileOut, sizeChunk)
+	chunkWriter := chunk.NewIOWriter(ptrFileOut, sizeChunk)
 	mergeSorter := chunk.NewMergeSorter(chunks, chunkWriter)
 
 	return errors.Wrap(mergeSorter.Sort(), "failed to merge sort the chunk files")

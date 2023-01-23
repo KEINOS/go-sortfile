@@ -12,3 +12,9 @@ func SortSlice(input []string) {
 	// between other sorting algorithms.
 	slices.Sort(input)
 }
+
+// SortSliceFunc is similar to SortSlice but it takes a function to compare two strings.
+// The given input will be modified after its call.
+func SortSliceFunc(input []string, less func(a, b string) bool) {
+	slices.SortFunc(input, less)
+}

@@ -15,7 +15,7 @@ import (
 //
 // Usually it is recommended to use the FromPath() function which detects
 // whether to use the in-memory sort or the external merge sort.
-func InMemory(numLines int, input io.Reader, output io.Writer) error {
+func InMemory(numLines int, input io.Reader, output io.Writer, isLess func(string, string) bool) error {
 	lines := make([]string, numLines)
 	scanner := bufio.NewScanner(input)
 	index := 0
@@ -25,7 +25,11 @@ func InMemory(numLines int, input io.Reader, output io.Writer) error {
 		index++
 	}
 
-	inmemory.SortSlice(lines)
+	if isLess == nil {
+		inmemory.SortSlice(lines)
+	} else {
+		inmemory.SortSliceFunc(lines, isLess)
+	}
 
 	_, err := output.Write([]byte(strings.Join(lines, "")))
 

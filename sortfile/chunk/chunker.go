@@ -9,11 +9,12 @@ import (
 )
 
 // Chunker is a file chunker. It returns a list of paths to the temporary chunked
-// files. These files are sorted by lines.
+// files. These files are sorted by lines using the given isLess function. If
+// isLess is nil, the default is used.
 //
 // It is similar to FileSplit() but takes a file pointer instead of file path.
 // To chunk the file via file path, use FileSplit().
-func Chunker(inFile io.Reader, sizeFileIn, sizeChunk datasize.InBytes) ([]string, error) {
+func Chunker(inFile io.Reader, sizeFileIn datasize.InBytes, sizeChunk datasize.InBytes, isLess func(string, string) bool) ([]string, error) {
 	if inFile == nil {
 		return nil, errors.New("input file is nil")
 	}
@@ -26,6 +27,7 @@ func Chunker(inFile io.Reader, sizeFileIn, sizeChunk datasize.InBytes) ([]string
 
 	for {
 		lines := NewLines() // a chunk
+		lines.IsLess = isLess
 
 		for buf.Scan() {
 			line = buf.Text()

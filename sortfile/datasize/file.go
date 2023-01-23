@@ -11,7 +11,7 @@ import (
 var OsOpen = os.Open
 
 // File returns the data size of the given file and the number of lines.
-func File(path string) (InBytes, int, error) {
+func File(path string) (sizeFile InBytes, numLines int, err error) {
 	file, err := OsOpen(path)
 	if err != nil {
 		return 0, 0, errors.Wrap(err, "failed to open file")
@@ -24,7 +24,7 @@ func File(path string) (InBytes, int, error) {
 		return 0, 0, errors.Wrap(err, "failed to get file stat")
 	}
 
-	numLines, err := cl.CountLines(file)
+	numLines, err = cl.CountLines(file)
 
 	return InBytes(stat.Size()), numLines, errors.Wrap(err, "failed to count lines in file")
 }

@@ -10,6 +10,18 @@ func TestSortSlice(t *testing.T) {
 	require.True(t, preTestSortFunction(SortSlice))
 }
 
+func TestSortSliceFunc(t *testing.T) {
+	isLess := func(a, b string) bool {
+		return a < b
+	}
+
+	sortSliceFn := func(input []string) {
+		SortSliceFunc(input, isLess)
+	}
+
+	require.True(t, preTestSortFunction(sortSliceFn))
+}
+
 func preTestSortFunction(fnTest func([]string)) bool {
 	input := []string{
 		"foo",
