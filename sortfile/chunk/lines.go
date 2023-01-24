@@ -103,9 +103,9 @@ func (l *Lines) SizeRaw() int {
 
 // UniformLineBreak returns the given line with the uniformed line break at the end.
 func (l Lines) UniformLineBreak(line string) string {
-	const cutset = "\r\n"
+	const cutset = CRLF
 
-	return strings.TrimRight(line, cutset) + "\n"
+	return strings.TrimRight(line, cutset) + GO_EOL
 }
 
 // WillOverSize returns true if the given line will make the chunk over the

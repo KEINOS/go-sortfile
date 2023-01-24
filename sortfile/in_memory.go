@@ -21,7 +21,7 @@ func InMemory(numLines int, input io.Reader, output io.Writer, isLess func(strin
 	index := 0
 
 	for scanner.Scan() {
-		lines[index] = scanner.Text() + LF
+		lines[index] = scanner.Text() + GO_EOL
 		index++
 	}
 
