@@ -1,0 +1,352 @@
+?   	github.com/KEINOS/go-sortfile/cmd/sortfile	[no test files]
+goos: darwin
+goarch: amd64
+pkg: github.com/KEINOS/go-sortfile/sortfile
+cpu: Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz
+BenchmarkFromPath-4   	       1	56387126311 ns/op	11580091784 B/op	133333997 allocs/op
+BenchmarkFromPath-4   	       1	48189627948 ns/op	11303056016 B/op	133336915 allocs/op
+BenchmarkFromPath-4   	       1	40989084898 ns/op	11614787992 B/op	133334111 allocs/op
+BenchmarkFromPath-4   	       1	37692744409 ns/op	11526847368 B/op	133334161 allocs/op
+BenchmarkFromPath-4   	       1	41134279062 ns/op	11365091128 B/op	133334093 allocs/op
+BenchmarkFromPath-4   	SIGQUIT: quit
+PC=0x7ff8096503ea m=0 sigcode=0
+
+goroutine 0 [idle]:
+runtime.pthread_cond_wait(0x13b8080, 0x13b8040)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/sys_darwin.go:450 +0x34 fp=0x7ff7bfefea68 sp=0x7ff7bfefea40 pc=0x10576f4
+runtime.semasleep(0xffffffffffffffff)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/os_darwin.go:66 +0xad fp=0x7ff7bfefeac0 sp=0x7ff7bfefea68 pc=0x103468d
+runtime.notesleep(0x13b7e48)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/lock_sema.go:181 +0x85 fp=0x7ff7bfefeaf0 sp=0x7ff7bfefeac0 pc=0x100cd45
+runtime.mPark(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:1457
+runtime.stopm()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:2247 +0x8c fp=0x7ff7bfefeb20 sp=0x7ff7bfefeaf0 pc=0x103e44c
+runtime.findRunnable()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:2874 +0x9e8 fp=0x7ff7bfefec10 sp=0x7ff7bfefeb20 pc=0x103fae8
+runtime.schedule()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:3214 +0xbe fp=0x7ff7bfefec48 sp=0x7ff7bfefec10 pc=0x104091e
+runtime.park_m(0xc0002331e0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:3363 +0x14d fp=0x7ff7bfefec78 sp=0x7ff7bfefec48 pc=0x1040e4d
+runtime.mcall()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:448 +0x43 fp=0x7ff7bfefec88 sp=0x7ff7bfefec78 pc=0x1068943
+
+goroutine 1 [chan receive, 7 minutes]:
+runtime.gopark(0x0?, 0xc0001297c8?, 0x9f?, 0xe6?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000129748 sp=0xc000129728 pc=0x103a676
+runtime.chanrecv(0xc0000222a0, 0x0, 0x1)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/chan.go:583 +0x49b fp=0xc0001297d8 sp=0xc000129748 pc=0x1007b3b
+runtime.chanrecv1(0x101a9a6?, 0x13e7cc0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/chan.go:442 +0x18 fp=0xc000129800 sp=0xc0001297d8 pc=0x1007678
+testing.(*B).run1(0xc00013cd80)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:235 +0xb2 fp=0xc0001298c0 sp=0xc000129800 pc=0x10d44f2
+testing.(*benchContext).processBench(0xc0002f2090, 0x238?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:587 +0x392 fp=0xc000129a28 sp=0xc0001298c0 pc=0x10d6532
+testing.(*B).run(0xc00013cb40?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:276 +0x67 fp=0xc000129a58 sp=0xc000129a28 pc=0x10d4987
+testing.(*B).Run(0xc00013c900, {0x1217711?, 0x63cf45b1?}, 0x123ef48)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:677 +0x453 fp=0xc000129b40 sp=0xc000129a58 pc=0x10d6ef3
+testing.runBenchmarks.func1(0xc00013c900?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:550 +0x6e fp=0xc000129b90 sp=0xc000129b40 pc=0x10d616e
+testing.(*B).runN(0xc00013c900, 0x1)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:193 +0x102 fp=0xc000129c08 sp=0xc000129b90 pc=0x10d42c2
+testing.runBenchmarks({0x121f065, 0x26}, 0x5?, {0x13ac6b0, 0x1, 0x40?})
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:559 +0x418 fp=0xc000129d08 sp=0xc000129c08 pc=0x10d5e18
+testing.(*M).Run(0xc000001180)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/testing.go:1733 +0x811 fp=0xc000129f00 sp=0xc000129d08 pc=0x10e29f1
+main.main()
+	_testmain.go:73 +0x1aa fp=0xc000129f80 sp=0xc000129f00 pc=0x11c0a0a
+runtime.main()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:250 +0x212 fp=0xc000129fe0 sp=0xc000129f80 pc=0x103a2b2
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc000129fe8 sp=0xc000129fe0 pc=0x106aba1
+
+goroutine 2 [force gc (idle), 10 minutes]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000044fb0 sp=0xc000044f90 pc=0x103a676
+runtime.goparkunlock(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:369
+runtime.forcegchelper()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:302 +0xad fp=0xc000044fe0 sp=0xc000044fb0 pc=0x103a50d
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc000044fe8 sp=0xc000044fe0 pc=0x106aba1
+created by runtime.init.6
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:290 +0x25
+
+goroutine 18 [GC sweep wait]:
+runtime.gopark(0x13b7201?, 0x0?, 0x0?, 0x0?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000040790 sp=0xc000040770 pc=0x103a676
+runtime.goparkunlock(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:369
+runtime.bgsweep(0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgcsweep.go:297 +0xd7 fp=0xc0000407c8 sp=0xc000040790 pc=0x1025977
+runtime.gcenable.func1()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:178 +0x26 fp=0xc0000407e0 sp=0xc0000407c8 pc=0x101a5e6
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc0000407e8 sp=0xc0000407e0 pc=0x106aba1
+created by runtime.gcenable
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:178 +0x6b
+
+goroutine 19 [GC scavenge wait]:
+runtime.gopark(0x11c471af52b5b?, 0xde495?, 0x0?, 0x0?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000040f70 sp=0xc000040f50 pc=0x103a676
+runtime.goparkunlock(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:369
+runtime.(*scavengerState).park(0x13b75e0)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgcscavenge.go:389 +0x53 fp=0xc000040fa0 sp=0xc000040f70 pc=0x10239d3
+runtime.bgscavenge(0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgcscavenge.go:622 +0x65 fp=0xc000040fc8 sp=0xc000040fa0 pc=0x1023fc5
+runtime.gcenable.func2()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:179 +0x26 fp=0xc000040fe0 sp=0xc000040fc8 pc=0x101a586
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc000040fe8 sp=0xc000040fe0 pc=0x106aba1
+created by runtime.gcenable
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:179 +0xaa
+
+goroutine 3 [finalizer wait, 7 minutes]:
+runtime.gopark(0x0?, 0x123f1c0?, 0x0?, 0x40?, 0x2000000020?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000044628 sp=0xc000044608 pc=0x103a676
+runtime.goparkunlock(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:369
+runtime.runfinq()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mfinal.go:180 +0x10f fp=0xc0000447e0 sp=0xc000044628 pc=0x10196ef
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc0000447e8 sp=0xc0000447e0 pc=0x106aba1
+created by runtime.createfing
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mfinal.go:157 +0x45
+
+goroutine 16 [GC worker (idle)]:
+runtime.gopark(0x11c471af21e96?, 0x3?, 0xf9?, 0x79?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000238f50 sp=0xc000238f30 pc=0x103a676
+runtime.gcBgMarkWorker()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1235 +0xf1 fp=0xc000238fe0 sp=0xc000238f50 pc=0x101c731
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc000238fe8 sp=0xc000238fe0 pc=0x106aba1
+created by runtime.gcBgMarkStartWorkers
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1159 +0x25
+
+goroutine 56 [GC worker (idle), 6 minutes]:
+runtime.gopark(0x11be6ed199d93?, 0xc00001e580?, 0x18?, 0x14?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000234750 sp=0xc000234730 pc=0x103a676
+runtime.gcBgMarkWorker()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1235 +0xf1 fp=0xc0002347e0 sp=0xc000234750 pc=0x101c731
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc0002347e8 sp=0xc0002347e0 pc=0x106aba1
+created by runtime.gcBgMarkStartWorkers
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1159 +0x25
+
+goroutine 69 [GC worker (idle)]:
+runtime.gopark(0x11c471af0ab24?, 0x1?, 0x5c?, 0x61?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc00023a750 sp=0xc00023a730 pc=0x103a676
+runtime.gcBgMarkWorker()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1235 +0xf1 fp=0xc00023a7e0 sp=0xc00023a750 pc=0x101c731
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc00023a7e8 sp=0xc00023a7e0 pc=0x106aba1
+created by runtime.gcBgMarkStartWorkers
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1159 +0x25
+
+goroutine 57 [GC worker (idle)]:
+runtime.gopark(0x11c471af22a41?, 0x3?, 0xbb?, 0x5a?, 0x0?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/proc.go:363 +0xd6 fp=0xc000234f50 sp=0xc000234f30 pc=0x103a676
+runtime.gcBgMarkWorker()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1235 +0xf1 fp=0xc000234fe0 sp=0xc000234f50 pc=0x101c731
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc000234fe8 sp=0xc000234fe0 pc=0x106aba1
+created by runtime.gcBgMarkStartWorkers
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/mgc.go:1159 +0x25
+
+goroutine 1091 [runnable]:
+syscall.syscall(0x900c909?, 0xc000053a00?, 0x800000?, 0x7ffff800000?)
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/sys_darwin.go:23 +0x7f fp=0xc0000539b0 sp=0xc000053920 pc=0x10672df
+syscall.read(0xc0002d7800?, {0xc0000d1004?, 0x0?, 0x10185f3?})
+	/usr/local/Cellar/go/1.19.5/libexec/src/syscall/zsyscall_darwin_amd64.go:1189 +0x49 fp=0xc0000539f0 sp=0xc0000539b0 pc=0x1076f09
+syscall.Read(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/syscall/syscall_unix.go:183
+internal/poll.ignoringEINTRIO(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/internal/poll/fd_unix.go:794
+internal/poll.(*FD).Read(0xc0002d7800?, {0xc0000d1004?, 0xffc?, 0xffc?})
+	/usr/local/Cellar/go/1.19.5/libexec/src/internal/poll/fd_unix.go:163 +0x285 fp=0xc000053a70 sp=0xc0000539f0 pc=0x108c805
+os.(*File).read(...)
+	/usr/local/Cellar/go/1.19.5/libexec/src/os/file_posix.go:31
+os.(*File).Read(0xc0000141b0, {0xc0000d1004?, 0x4?, 0xc000053b00?})
+	/usr/local/Cellar/go/1.19.5/libexec/src/os/file.go:119 +0x5e fp=0xc000053ac8 sp=0xc000053a70 pc=0x109021e
+bufio.(*Scanner).Scan(0xc00035d780)
+	/usr/local/Cellar/go/1.19.5/libexec/src/bufio/scan.go:214 +0x876 fp=0xc000053ba0 sp=0xc000053ac8 pc=0x10e7716
+github.com/KEINOS/go-sortfile/sortfile/chunk.(*FileReader).NextLine(0xc000143540)
+	/Users/admin/Library/Mobile Documents/com~apple~CloudDocs/Data_Git/GitHub/PublicRepos/go-sortfile/sortfile/chunk/file_reader.go:99 +0x37 fp=0xc000053be0 sp=0xc000053ba0 pc=0x112ac17
+github.com/KEINOS/go-sortfile/sortfile/chunk.(*MergeSorter).Sort(0xc000053cf0)
+	/Users/admin/Library/Mobile Documents/com~apple~CloudDocs/Data_Git/GitHub/PublicRepos/go-sortfile/sortfile/chunk/merge_sorter.go:100 +0x179 fp=0xc000053c60 sp=0xc000053be0 pc=0x112b839
+github.com/KEINOS/go-sortfile/sortfile.ExternalFile(0xc000052db0?, 0x1091085?, {0x1276c80?, 0xc000014028?}, {0x1276ca0, 0xc000014030}, 0x1b600052d98?)
+	/Users/admin/Library/Mobile Documents/com~apple~CloudDocs/Data_Git/GitHub/PublicRepos/go-sortfile/sortfile/external_file.go:61 +0x217 fp=0xc000053d78 sp=0xc000053c60 pc=0x11bd377
+github.com/KEINOS/go-sortfile/sortfile.sortExternalFile(0xc00002a150?, 0x65?, {0x1276c80?, 0xc000014028?}, {0x1276ca0?, 0xc000014030?}, 0x11be2a87c01f1?)
+	/Users/admin/Library/Mobile Documents/com~apple~CloudDocs/Data_Git/GitHub/PublicRepos/go-sortfile/sortfile/from_path.go:83 +0x2d fp=0xc000053dc0 sp=0xc000053d78 pc=0x11bdbad
+github.com/KEINOS/go-sortfile/sortfile.FromPathFunc({0xc0002e2000, 0x1a}, {0xc00002a150, 0x65}, 0x1, 0xc00009aed0?)
+	/Users/admin/Library/Mobile Documents/com~apple~CloudDocs/Data_Git/GitHub/PublicRepos/go-sortfile/sortfile/from_path.go:73 +0x21a fp=0xc000053e78 sp=0xc000053dc0 pc=0x11bd89a
+github.com/KEINOS/go-sortfile/sortfile.FromPath(...)
+	/Users/admin/Library/Mobile Documents/com~apple~CloudDocs/Data_Git/GitHub/PublicRepos/go-sortfile/sortfile/from_path.go:19
+github.com/KEINOS/go-sortfile/sortfile.BenchmarkFromPath(0xc00013cd80)
+	/Users/admin/Library/Mobile Documents/com~apple~CloudDocs/Data_Git/GitHub/PublicRepos/go-sortfile/sortfile/benchmark_test.go:19 +0x18b fp=0xc000053f28 sp=0xc000053e78 pc=0x11be00b
+testing.(*B).runN(0xc00013cd80, 0x1)
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:193 +0x102 fp=0xc000053fa0 sp=0xc000053f28 pc=0x10d42c2
+testing.(*B).run1.func1()
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:233 +0x59 fp=0xc000053fe0 sp=0xc000053fa0 pc=0x10d4899
+runtime.goexit()
+	/usr/local/Cellar/go/1.19.5/libexec/src/runtime/asm_amd64.s:1594 +0x1 fp=0xc000053fe8 sp=0xc000053fe0 pc=0x106aba1
+created by testing.(*B).run1
+	/usr/local/Cellar/go/1.19.5/libexec/src/testing/benchmark.go:226 +0x9c
+
+rax    0x104
+rbx    0xb29f600
+rcx    0x7ff7bfefe8f8
+rdx    0x163200
+rdi    0x13b8080
+rsi    0x16320100163300
+rbp    0x7ff7bfefe9a0
+rsp    0x7ff7bfefe8f8
+r8     0x0
+r9     0xa0
+r10    0x0
+r11    0x246
+r12    0x16
+r13    0x0
+r14    0x16320100163300
+r15    0x163200
+rip    0x7ff8096503ea
+rflags 0x247
+cs     0x7
+fs     0x0
+gs     0x0
+*** Test killed with quit: ran too long (11m0s).
+exit status 2
+FAIL	github.com/KEINOS/go-sortfile/sortfile	660.316s
+PASS
+ok  	github.com/KEINOS/go-sortfile/sortfile/chunk	3.799s
+PASS
+ok  	github.com/KEINOS/go-sortfile/sortfile/datasize	0.383s
+goos: darwin
+goarch: amd64
+pkg: github.com/KEINOS/go-sortfile/sortfile/inmemory
+cpu: Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   12728	    107780 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   10000	    134762 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   10000	    133092 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	    8955	    133543 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   10000	    117239 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   10000	    111423 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   10000	    121588 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	    8682	    119784 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   10000	    117780 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_1000-4         	   10000	    138474 ns/op	   36856 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   69031	     16434 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   71104	     19504 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   81644	     16785 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   87334	     15394 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   76951	     14771 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   92965	     15966 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   71346	     16201 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   92014	     14577 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   72451	     14437 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_1000-4              	   67665	     15426 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	  109898	     13923 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	   87876	     13868 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	  117028	     13296 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	  119163	     12728 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	  115011	     13031 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	   79320	     12818 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	   81751	     13456 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	  102758	     11988 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	  102002	     13336 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_1000-4             	   92227	     14304 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   61035	     17801 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   71271	     18871 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   72775	     17305 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   58522	     20519 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   66726	     18941 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   76018	     16318 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   77984	     16595 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   77634	     17277 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   72658	     16514 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_1000-4   	   66915	     16213 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     970	   1310802 ns/op	  331769 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     859	   1293441 ns/op	  331769 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     890	   1290341 ns/op	  331768 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     913	   1315874 ns/op	  331769 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     847	   1281085 ns/op	  331768 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     808	   1295594 ns/op	  331769 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     842	   1332782 ns/op	  331769 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     819	   1382216 ns/op	  331771 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     806	   1322602 ns/op	  331770 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_10000-4        	     877	   1317032 ns/op	  331769 B/op	      10 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2725	    521346 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2362	    459057 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2500	    487190 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2373	    475202 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2469	    468247 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2352	    505983 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2901	    502609 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2301	    468667 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2551	    460020 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_10000-4             	    2415	    480390 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    3262	    434417 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    2683	    388213 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    2918	    404456 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    3386	    432849 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    2998	    385793 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    2455	    411368 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    2724	    391122 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    3093	    410992 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    3550	    400970 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_10000-4            	    3068	    381394 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1994	    582720 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1861	    600102 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1934	    597973 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1802	    638969 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1923	    580446 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1776	    571830 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1804	    580683 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1837	    570283 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1780	    617983 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_10000-4  	    1798	    693528 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      67	  16802494 ns/op	 3211258 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      66	  16721050 ns/op	 3211257 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      68	  16815023 ns/op	 3211256 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      70	  17501427 ns/op	 3211256 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      74	  15492581 ns/op	 3211256 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      78	  15147448 ns/op	 3211256 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      74	  15540714 ns/op	 3211256 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      76	  15991680 ns/op	 3211259 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      74	  16243026 ns/op	 3211261 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/radix.SortSlice_100000-4       	      79	  14932162 ns/op	 3211256 B/op	      11 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     165	   7389024 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     172	   7081230 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     172	   7363171 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     164	   6994233 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     174	   7050419 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     168	   6775340 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     166	   6808769 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     168	   7198286 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     166	   6921435 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/sort.Slice_100000-4            	     168	   6785508 ns/op	      56 B/op	       2 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     213	   5451878 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     195	   6290454 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     199	   5779547 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     206	   5664203 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     218	   5915246 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     195	   5807782 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     207	   5850846 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     211	   5776565 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     186	   6006758 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.Sort_100000-4           	     199	   5657578 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      91	  11121238 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      92	  10892746 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      88	  11518147 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      92	  11711996 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      91	  11157416 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	     110	  10629949 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      99	  11110684 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	     105	  10715760 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      88	  11534152 ns/op	       0 B/op	       0 allocs/op
+Benchmark_various_sort_algorithm/slices.SortStableFunc_100000-4 	      88	  12167603 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/KEINOS/go-sortfile/sortfile/inmemory	263.498s
+FAIL

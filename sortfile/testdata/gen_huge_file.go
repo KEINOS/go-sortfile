@@ -34,7 +34,7 @@ func main() {
 
 	fmt.Println("Generating a huge file for benchmarking with meomry size:", sizeMemFree.String())
 
-	fWriter, err := chunk.NewFileWriterPath(pathFileOut, sizeMemFree)
+	fWriter, err := chunk.NewFileWriter(pathFileOut, sizeMemFree)
 	panicOnError(err)
 
 	defer func() {

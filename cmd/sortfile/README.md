@@ -6,7 +6,7 @@
 sortfile <input file> <output file>
 ```
 
-It is much faster than the ordinary `sort` command in linux/unix. We beleive it can be improved further.
+It is much faster than the ordinary `sort` command in linux/unix. Though, we beleive it can be improved further.
 
 ```shellsession
 $ # Around 1 GB of random data
@@ -19,7 +19,7 @@ real    5m35.706s
 user    11m52.320s
 sys     0m40.690s
 
-$ # our sortfile command
+$ # Our sortfile command
 $ time sortfile shuffled_huge.txt out_sortfile.txt
 real    0m43.294s
 user    0m36.283s
