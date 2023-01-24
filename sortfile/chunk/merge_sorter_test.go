@@ -93,19 +93,13 @@ func TestMergeSorter_Sort_fail_to_initialize(t *testing.T) {
 		"error message should contain the error reason")
 }
 
-type DummyWriter struct{}
-
-func (dw DummyWriter) Write([]byte) (int, error) {
-	return 0, errors.New("forced error")
-}
-
 func TestMergeSorter_Sort_fail_to_write(t *testing.T) {
 	fReader, err := NewFileReader(
 		filepath.Join("..", "testdata", "sorted_chunks", "input_shuffled.txt"),
 	)
 	require.NoError(t, err, "failed to open the temp dir during test")
 
-	fWriter := NewIOWriter(DummyWriter{}, 16)
+	fWriter := NewIOWriter(DummyWriter{}, 16) // use dummy writer to fail
 
 	mergeSorter := NewMergeSorter(
 		[]*FileReader{fReader},
@@ -119,6 +113,27 @@ func TestMergeSorter_Sort_fail_to_write(t *testing.T) {
 		"error message should contain the error reason")
 }
 
+func TestMergeSorter_Sort_fail_to_read(t *testing.T) {
+	fReader := NewIOReader(DummyReader{CountMax: 3}) // use dummy reader to fail
+	fWriter := NewIOWriter(&bytes.Buffer{}, 16)
+
+	mergeSorter := NewMergeSorter(
+		[]*FileReader{fReader},
+		fWriter,
+	)
+
+	err := mergeSorter.Sort()
+
+	require.Error(t, err, "it should error if failed to read the next line")
+	require.Contains(t, err.Error(), "failed to read the next line",
+		"error message should contain the error reason")
+}
+
+// ----------------------------------------------------------------------------
+// Test Helpers
+// ----------------------------------------------------------------------------
+
+// DummyReader is a dummy reader to test the error handling.
 type DummyReader struct {
 	CountMax int // count to return the error
 	CountCur int // current count
@@ -139,18 +154,9 @@ func (dr DummyReader) Read(readme []byte) (int, error) {
 	return len(data), nil
 }
 
-func TestMergeSorter_Sort_fail_to_read(t *testing.T) {
-	fReader := NewIOReader(DummyReader{CountMax: 3})
-	fWriter := NewIOWriter(&bytes.Buffer{}, 16)
+// DummyWriter is a dummy writer to test the error handling.
+type DummyWriter struct{}
 
-	mergeSorter := NewMergeSorter(
-		[]*FileReader{fReader},
-		fWriter,
-	)
-
-	err := mergeSorter.Sort()
-
-	require.Error(t, err, "it should error if failed to read the next line")
-	require.Contains(t, err.Error(), "failed to read the next line",
-		"error message should contain the error reason")
+func (dw DummyWriter) Write([]byte) (int, error) {
+	return 0, errors.New("forced error")
 }
