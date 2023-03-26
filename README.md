@@ -1,6 +1,6 @@
 # go-sortfile
 
-[go-sortfile](https://github.com/KEINOS/go-sortfile) is a simple Go library for sorting large files.
+[go-sortfile](https://github.com/KEINOS/go-sortfile) is a simple Go library for sorting lines in a large file.
 
 If the file size is smaller than the available memory, sort in-memory; if the file size is larger than the available memory, perform an external sort with a K-way merge sort.
 
