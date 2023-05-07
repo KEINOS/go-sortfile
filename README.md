@@ -70,7 +70,7 @@ func ExampleFromPath() {
 func ExampleFromPathFunc() {
     exitOnError := func(err error) {
         if err != nil {
-            log.Fatal(err)
+            panic(err) // panic to allow defer
         }
     }
 
